@@ -358,8 +358,7 @@ Cette étude a démontré la **faisabilité de prédire un déménagement à par
 ---
 
 **Date de rédaction :** Décembre 2024  
-**Auteur :** [Votre nom]  
-**Contact :** [Votre email]
+**Auteur :**AZDA Fatima-zahra
 
 ---
 
@@ -372,4 +371,3 @@ Cette étude a démontré la **faisabilité de prédire un déménagement à par
 
 ---
 
-*Ce rapport constitue une analyse complète et reproductible d'un problème de classification binaire appliqué à la prédiction du déménagement via données de transport.*
