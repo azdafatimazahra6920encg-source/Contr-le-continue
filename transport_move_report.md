@@ -228,7 +228,262 @@ Bien que non implémentée dans le code fourni, la courbe ROC (Receiver Operatin
 - **AUC < 0.7** : Faible pouvoir prédictif
 
 ---
+```python
+# =====================================================
+# ANALYSE PRÉDICTIVE DU DÉMÉNAGEMENT DANS LE TRANSPORT
+# Dataset: Transport Move (willianoliveiragibin/transport-move)
+# Problématique: Classification binaire - Prédiction du déménagement
+# =====================================================
 
+# 1. INSTALLATION DES DÉPENDANCES
+# !pip install kagglehub[pandas-datasets] pandas scikit-learn seaborn matplotlib plotly
+
+import kagglehub
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.model_selection import train_test_split, cross_val_score, GridSearchCV
+from sklearn.preprocessing import StandardScaler, LabelEncoder
+from sklearn.impute import KNNImputer
+from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import classification_report, confusion_matrix
+import warnings
+warnings.filterwarnings('ignore')
+
+# CHARGEMENT DU DATASET
+print("Chargement du dataset Transport Move...")
+df = kagglehub.dataset_load(
+    "willianoliveiragibin/transport-move",
+    force_reload=True
+)
+print("Dataset chargé:", df.shape)
+print("\nPremières lignes:")
+print(df.head())
+
+# =====================================================
+# 3.1 DÉFINITION DE LA PROBLÉMATIQUE ET DICTIONNAIRE
+# =====================================================
+
+print("\n" + "="*60)
+print("DÉFINITION DE LA PROBLÉMATIQUE")
+print("="*60)
+print("""
+PROBLÉMATIQUE: Classification binaire
+Objectif: Prédire si un individu va déménager (target: 'move') basé sur ses 
+patterns de transport/mouvement.
+
+Type: Classification binaire supervisée
+Target: 'move' (0/1 - ne déménage pas / déménage)
+""")
+
+print("\nDICTIONNAIRE DES VARIABLES (exemple typique transport-move):")
+print(df.info())
+print("\nTypes de variables détectés:")
+print(df.dtypes.value_counts())
+
+# =====================================================
+# 3.2.1 PRÉ-TRAITEMENT DES DONNÉES
+# =====================================================
+
+print("\n" + "="*60)
+print("1. PRÉ-TRAITEMENT")
+print("="*60)
+
+# Nettoyage des doublons
+print(f"Doublons avant: {df.duplicated().sum()}")
+df = df.drop_duplicates()
+print(f"Doublons après: {df.duplicated().sum()}")
+
+# Gestion des valeurs manquantes avec KNN Imputer
+print(f"\nValeurs manquantes avant: {df.isnull().sum().sum()}")
+numeric_cols = df.select_dtypes(include=[np.number]).columns
+categorical_cols = df.select_dtypes(include=['object']).columns
+
+# Imputation KNN pour numériques
+if len(numeric_cols) > 0:
+    imputer = KNNImputer(n_neighbors=5)
+    df[numeric_cols] = imputer.fit_transform(df[numeric_cols])
+
+# Imputation mode pour catégorielles
+for col in categorical_cols:
+    df[col] = df[col].fillna(df[col].mode()[0])
+
+print(f"Valeurs manquantes après: {df.isnull().sum().sum()}")
+
+# Identification/creation target 'move' si pas présente
+if 'move' not in df.columns:
+    # Feature engineering: créer target basé sur patterns de mouvement
+    df['total_distance'] = df.filter(like='distance').sum(axis=1)
+    df['freq_trips'] = df.filter(like='trip').sum(axis=1)
+    df['move'] = ((df['total_distance'] > df['total_distance'].quantile(0.8)) & 
+                  (df['freq_trips'] > df['freq_trips'].quantile(0.7))).astype(int)
+
+print(f"Distribution target 'move':\n{df['move'].value_counts(normalize=True)}")
+
+# Encodage des variables catégorielles
+label_encoders = {}
+for col in categorical_cols:
+    if col != 'move':
+        le = LabelEncoder()
+        df[col] = le.fit_transform(df[col].astype(str))
+        label_encoders[col] = le
+
+# Séparation features/target
+X = df.drop('move', axis=1)
+y = df['move']
+
+# Normalisation
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X)
+X_scaled = pd.DataFrame(X_scaled, columns=X.columns)
+
+print("Pré-traitement terminé. Shape final:", X_scaled.shape)
+
+# =====================================================
+# 3.2.2 ANALYSE EXPLORATOIRE (EDA)
+# =====================================================
+
+print("\n" + "="*60)
+print("2. ANALYSE EXPLORATOIRE")
+print("="*60)
+
+# Visualisation distributions
+fig, axes = plt.subplots(2, 2, figsize=(15, 12))
+axes = axes.ravel()
+
+# Distribution target
+target_counts = y.value_counts()
+axes[0].pie(target_counts.values, labels=target_counts.index, autopct='%1.1f%%')
+axes[0].set_title("Distribution de la target 'move'")
+
+# Distributions numériques principales
+num_cols_sample = X_scaled.select_dtypes(include=[np.number]).columns[:3]
+for i, col in enumerate(num_cols_sample):
+    axes[i+1].hist(X_scaled[col], bins=30, alpha=0.7)
+    axes[i+1].set_title(f'Distribution {col}')
+    # INTERPRÉTATION: La distribution montre si les données sont équilibrées
+    # ou présentent des biais importants
+
+plt.tight_layout()
+plt.show()
+
+# Heatmap corrélations (top 10 features)
+plt.figure(figsize=(12, 8))
+top_corr = X_scaled.corrwith(y).abs().nlargest(10).index
+corr_matrix = X_scaled[top_corr].corr()
+sns.heatmap(corr_matrix, annot=True, cmap='coolwarm', center=0)
+plt.title("Corrélations - Top 10 features avec target")
+plt.show()
+
+# Feature Engineering
+print("\nFeature Engineering:")
+X_scaled['distance_per_trip'] = X_scaled.filter(like='distance').mean(axis=1)
+X_scaled['trip_variability'] = X_scaled.filter(like='trip').std(axis=1)
+print("Nouvelles features créées: distance_per_trip, trip_variability")
+
+# CORRÉLATION AVEC TARGET
+correlations = X_scaled.corrwith(y).sort_values(ascending=False)
+print("\nTop 5 features corrélées avec target:")
+print(correlations.head())
+
+# =====================================================
+# 3.2.3 MODÉLISATION MACHINE LEARNING
+# =====================================================
+
+print("\n" + "="*60)
+print("3. MODÉLISATION")
+print("="*60)
+
+# Split train/test
+X_train, X_test, y_train, y_test = train_test_split(
+    X_scaled, y, test_size=0.2, random_state=42, stratify=y
+)
+
+# 3 algorithmes différents
+models = {
+    'LogisticRegression': LogisticRegression(random_state=42, max_iter=1000),
+    'RandomForest': RandomForestClassifier(random_state=42, n_jobs=-1),
+    'GradientBoosting': GradientBoostingClassifier(random_state=42)
+}
+
+# Cross-validation et optimisation hyperparamètres
+results = {}
+best_models = {}
+
+for name, model in models.items():
+    print(f"\n--- {name} ---")
+    
+    # GridSearchCV pour optimisation
+    if name == 'LogisticRegression':
+        param_grid = {'C': [0.1, 1, 10]}
+    elif name == 'RandomForest':
+        param_grid = {'n_estimators': [100, 200], 'max_depth': [10, 20]}
+    else:
+        param_grid = {'n_estimators': [100, 200], 'learning_rate': [0.1, 0.2]}
+    
+    grid_search = GridSearchCV(model, param_grid, cv=5, scoring='f1', n_jobs=-1)
+    grid_search.fit(X_train, y_train)
+    
+    best_models[name] = grid_search.best_estimator_
+    scores = cross_val_score(grid_search.best_estimator_, X_train, y_train, 
+                           cv=5, scoring='f1')
+    
+    results[name] = {
+        'cv_mean': scores.mean(),
+        'cv_std': scores.std(),
+        'best_params': grid_search.best_params_
+    }
+    
+    print(f"Meilleurs params: {grid_search.best_params_}")
+    print(f"CV F1-score: {scores.mean():.3f} (+/- {scores.std()*2:.3f})")
+
+# Évaluation finale sur test set
+print("\n" + "="*60)
+print("ÉVALUATION FINALE")
+print("="*60)
+
+results_df = pd.DataFrame(results).T
+print("\nComparaison des modèles:")
+print(results_df[['cv_mean', 'cv_std']].round(3))
+
+# Meilleur modèle
+best_model_name = max(results, key=lambda k: results[k]['cv_mean'])
+best_model = best_models[best_model_name]
+print(f"\n🏆 MEILLEUR MODÈLE: {best_model_name}")
+
+# Prédictions et rapport
+y_pred = best_model.predict(X_test)
+print("\nRapport de classification:")
+print(classification_report(y_test, y_pred))
+
+# Matrix de confusion
+plt.figure(figsize=(8, 6))
+cm = confusion_matrix(y_test, y_pred)
+sns.heatmap(cm, annot=True, fmt='d', cmap='Blues')
+plt.title(f'Matrix de confusion - {best_model_name}')
+plt.ylabel('Vrai')
+plt.xlabel('Prédit')
+plt.show()
+
+# Feature importance (si applicable)
+if hasattr(best_model, 'feature_importances_'):
+    importances = pd.Series(best_model.feature_importances_, 
+                          index=X_scaled.columns).sort_values(ascending=False)
+    plt.figure(figsize=(10, 6))
+    importances.head(10).plot(kind='barh')
+    plt.title('Top 10 features importantes')
+    plt.show()
+    print("\nTop 5 features importantes:")
+    print(importances.head())
+
+print("\n✅ PIPELINE TERMINÉ!")
+print(f"Dataset original: {df.shape}")
+print(f"Meilleur modèle F1-score CV: {results[best_model_name]['cv_mean']:.3f}")
+print(f"Hyperparamètres optimaux: {results[best_model_name]['best_params']}")
+```
+  
 ## 4. Conclusion
 
 ### 4.1 Synthèse des résultats
