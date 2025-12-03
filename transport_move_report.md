@@ -487,7 +487,10 @@ print(f"Dataset original: {df.shape}")
 print(f"Meilleur modèle F1-score CV: {results[best_model_name]['cv_mean']:.3f}")
 print(f"Hyperparamètres optimaux: {results[best_model_name]['best_params']}")
 ```
-  
+  <img src="GRAPHE1.png" style="height:150px;margin-right:100px"/>
+  <img src="matrice confusion.png" style="height:150px;margin-right:100px"/>
+  <img src="matrice correlation.png" style="height:150px;margin-right:100px"/>
+   <img src="TOP 10 features importantes.png" style="height:150px;margin-right:100px"/>
 ## 4. Conclusion
 
 ### 4.1 Synthèse des résultats
