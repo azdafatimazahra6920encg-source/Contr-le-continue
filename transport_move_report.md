@@ -252,6 +252,7 @@ print("Nouvelles features créées: distance_per_trip, trip_variability")
 ```
  <img src="TOP 10 features importantes.png" style="height:150px;margin-right:100px"/>
  Concernant les 10 features importantes, ce sont les variables qui ont le plus contribué à la décision du modèle pour prédire le déménagement. Par exemple, des mesures liées à la distance moyenne parcourue, la fréquence ou la variabilité des trajets peuvent être décisives. Leur pondération dans le modèle reflète leur importance relative : plus une feature a un score élevé, plus elle influence la prédiction. Cette information guide aussi l’interprétation métier, donnant des insights sur quels comportements de transport sont les indicateurs majeurs d’un potentiel déménagement.
+ 
 ```python
 # =====================================================
 # ANALYSE PRÉDICTIVE DU DÉMÉNAGEMENT DANS LE TRANSPORT
