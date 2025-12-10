@@ -216,6 +216,7 @@ plt.xlabel('Prédit')
 plt.show()
 ```
  <img src="matrice confusion.png" style="height:150px;margin-right:100px"/>
+ 
 ### 3.3 Feature Importance
 
 **Top 5 des features les plus discriminantes :**
@@ -230,15 +231,6 @@ plt.show()
 - Les features engineered (`distance_per_trip`, `trip_variability`) figurent dans le top, validant la pertinence de leur création
 - La distance moyenne par trajet suggère que l'exploration de zones éloignées est un prédicteur fort
 - La variabilité des trajets confirme l'hypothèse de rupture des routines pré-déménagement
-
-### 3.4 Courbe ROC-AUC (recommandé)
-
-Bien que non implémentée dans le code fourni, la courbe ROC (Receiver Operating Characteristic) et l'aire sous la courbe (AUC) sont des métriques complémentaires essentielles :
-
-- **AUC > 0.9** : Excellent discriminant
-- **0.8 < AUC < 0.9** : Bonne discrimination
-- **0.7 < AUC < 0.8** : Acceptable
-- **AUC < 0.7** : Faible pouvoir prédictif
 
 ---
 ```python
