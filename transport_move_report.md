@@ -234,6 +234,23 @@ plt.show()
 
 ---
 ```python
+# Heatmap corrélations (top 10 features)
+plt.figure(figsize=(12, 8))
+top_corr = X_scaled.corrwith(y).abs().nlargest(10).index
+corr_matrix = X_scaled[top_corr].corr()
+sns.heatmap(corr_matrix, annot=True, cmap='coolwarm', center=0)
+plt.title("Corrélations - Top 10 features avec target")
+plt.show()
+
+# Feature Engineering
+print("\nFeature Engineering:")
+X_scaled['distance_per_trip'] = X_scaled.filter(like='distance').mean(axis=1)
+X_scaled['trip_variability'] = X_scaled.filter(like='trip').std(axis=1)
+print("Nouvelles features créées: distance_per_trip, trip_variability")
+```
+ <img src="TOP 10 features importantes.png" style="height:150px;margin-right:100px"/>
+ 
+```python
 # =====================================================
 # ANALYSE PRÉDICTIVE DU DÉMÉNAGEMENT DANS LE TRANSPORT
 # Dataset: Transport Move (willianoliveiragibin/transport-move)
