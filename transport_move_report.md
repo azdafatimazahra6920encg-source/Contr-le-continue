@@ -149,18 +149,17 @@ Trois familles d'algorithmes ont été sélectionnées pour couvrir différents 
 
 #### 3.1.1 Comparaison des algorithmes
 
-| Modèle               | F1-Score (CV) | Écart-type | Hyperparamètres optimaux                    |
-|----------------------|---------------|------------|---------------------------------------------|
-| Logistic Regression  | 0.820         |  ±0.019     | C=X                                     |
-| Random Forest        | 1.000         |**±0.000**   | n_estimators=X,max_depth=X                 |
-| **Gradient Boosting**| 1.000         | **±0.XXX** |  n_estimators=X,learnin_rate=X        |
+| Modèle               | F1-Score (CV) | 
+|----------------------|---------------|
+| Logistic Regression  | 0.820         |
+| Random Forest        | 1.000         |
+| **Gradient Boosting**| 1.000         | 
 
 
 **🏆 Meilleur modèle :** Random Forest (sélectionné arbitrairement entre RF et GB, performances identiques)
 
 **Analyse :**
 - Le Gradient Boosting surpasse les autres modèles grâce à sa capacité à corriger itérativement les erreurs
-- Le faible écart-type indique une bonne stabilité du modèle (performances consistantes sur différents folds)
 - La Régression Logistique, malgré sa simplicité, fournit une baseline solide démontrant une certaine séparabilité linéaire des classes
 
 ### 3.2 Métriques détaillées (Test Set)
