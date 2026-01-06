@@ -42,24 +42,17 @@ Voici un **sommaire clair, structuré et académique**, parfaitement aligné ave
 ### 3.3 Analyse de l’importance des variables
 ### 3.4 Analyse de la matrice de corrélation
 ### 3.5 Analyse des distributions des variables et de la cible
-
 ---
 
-**Chapitre 4 : Conclusion et perspectives**
+## Chapitre 4 : Conclusion et perspectives
 ### 4.1 Synthèse des résultats
-
 ### 4.2 Limites du modèle
-   
 ### 4.3 Pistes d’amélioration
-   
-
 ---
 
-**Chapitre 5 : Annexes**
+## Chapitre 5 : Annexes
 ### 5.1 Environnement technique
-
 ### 5.2 Reproductibilité
-
 ### 5.3 Considérations éthiques
 
 ---
