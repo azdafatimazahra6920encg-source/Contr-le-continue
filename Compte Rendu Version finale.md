@@ -29,12 +29,11 @@ Voici un **sommaire clair, structuré et académique**, parfaitement aligné ave
 ### 2. Description du dataset *Transport Move*
 ### 3. Formulation du problème de classification
 ---
-
 ## Chapitre 2 : Méthodologie
 ### 2.1 Collecte et préparation des données
 ### 2.2 Analyse exploratoire des données (EDA)
 ### 2.3 Modélisation
-   
+---   
 ## Chapitre 3 : Résultats et discussion
 ### 3.1 Comparaison des performances des modèles
 ### 3.2 Analyse des métriques d’évaluation
@@ -42,13 +41,11 @@ Voici un **sommaire clair, structuré et académique**, parfaitement aligné ave
 ### 3.4 Analyse de la matrice de corrélation
 ### 3.5 Analyse des distributions des variables et de la cible
 ---
-
 ## Chapitre 4 : Conclusion et perspectives
 ### 4.1 Synthèse des résultats
 ### 4.2 Limites du modèle
 ### 4.3 Pistes d’amélioration
 ---
-
 ## Chapitre 5 : Annexes
 ### 5.1 Environnement technique
 ### 5.2 Reproductibilité
