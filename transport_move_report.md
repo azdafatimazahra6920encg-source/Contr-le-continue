@@ -8,7 +8,58 @@
 **Objectif :** Prédire la probabilité de déménagement basée sur les patterns de transport
 
 ---
+1. INTRODUCTION 
 
+1.1 Contexte
+1.2 Problématique 
+1.3 Objectifs 
+
+
+2. MÉTHODOLOGIE 
+2.1 Collecte et Préparation des Données 
+
+2.1.1 Dataset 
+2.1.2 Pré-traitement 
+
+2.2 Analyse Exploratoire (EDA) 
+
+2.2.1 Feature Engineering Avancé 
+2.2.2 Analyse de corrélation
+
+2.3 Modélisation 
+
+2.3.1 Choix des algorithmes 
+2.3.2 Optimisation et validation 
+
+3. RÉSULTATS & DISCUSSION  
+
+3.1.1 Comparaison des algorithmes
+
+3.2 Métriques détaillées (Test Set) 
+
+3.2.1 Rapport de classification 
+3.2.2 Matrice de confusion
+
+3.3 Feature Importance
+3.4 Matrice de corrélation 
+3.5 Distributions des variables et de la cible 
+4. CONCLUSION 
+4.1 Synthèse des résultats
+4.2 Limites du modèle 
+
+4.2.1 Limitations méthodologiques 
+4.2.2 Limitations techniques 
+
+4.3 Pistes d'amélioration 
+
+4.3.1 Court terme (optimisations immédiates) 
+4.3.2 Moyen terme (améliorations avancées)
+4.3.3 Long terme (recherche et innovation) 
+
+5. ANNEXES 
+5.1 Environnement technique 
+5.2 Reproductibilité 
+5.3 Considérations éthiques
 ## 1. Introduction
 
 ### 1.1 Contexte
