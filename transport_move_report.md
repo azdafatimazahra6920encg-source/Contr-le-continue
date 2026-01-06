@@ -152,8 +152,8 @@ Trois familles d'algorithmes ont été sélectionnées pour couvrir différents 
 | Modèle               | F1-Score (CV) | Écart-type | Hyperparamètres optimaux                    |
 |----------------------|---------------|------------|---------------------------------------------|
 | Logistic Regression  | 0.820         |  ±0.019     | C=X                                     |
-| Random Forest        |   1.000       |**±0.000**   | n_estimators=X,max_depth=X                 |
-| **Gradient Boosting**| **0.XXX**     | **±0.XXX** |  n_estimators=X,learnin_rate=X        |
+| Random Forest        | 1.000         |**±0.000**   | n_estimators=X,max_depth=X                 |
+| **Gradient Boosting**| 1.000         | **±0.XXX** |  n_estimators=X,learnin_rate=X        |
 
 
 **🏆 Meilleur modèle :** Random Forest (sélectionné arbitrairement entre RF et GB, performances identiques)
@@ -220,18 +220,14 @@ plt.show()
  La matrice de confusion détaille comment le modèle classe les individus entre ceux qui déménagent (classe positive) et ceux qui ne déménagent pas (classe négative). Les vrais positifs (en haut à gauche ou en bas à droite selon l’agencement) correspondent aux individus correctement prédits comme déménageant, tandis que les vrais négatifs sont ceux correctement identifiés comme ne déménageant pas. Les faux positifs représentent des erreurs où le modèle prédit un déménagement alors qu'il n’y en a pas, et les faux négatifs sont des cas où le modèle ne détecte pas un déménagement réel. Cette analyse permet d’évaluer la balance entre sensibilité (rappel) et précision et de mieux comprendre les erreurs critiques à corriger selon l’objectif.
 ### 3.3 Feature Importance
 
-**Top 5 des features les plus discriminantes :**
+**Top 5 features importantes: :** 
 
-1. **Air transport, passengers carried** : 70.2%
-2. **annual_passenger_change** : 25.3%
-3. **Code** : 2.2%
-4. **passenger_density_per_year** : 1.1%
-5. **Year** : 1.0%
+Air transport, passengers carried    0.702128
+annual_passenger_change              0.253379
+Code                                 0.021898
+passenger_density_per_year           0.010775
+Year                                 0.009758
 
-**Insights métier :**
-- La variable de passagers transportés domine (70%), confirmant le lien direct avec la target synthétique
-- La variation annuelle (25%) est le second facteur, validant l'hypothèse de changements comportementaux
-- Les features engineered contribuent significativement (26.4% cumulés)
 
 ---
 ## Code python: 10features importantes
