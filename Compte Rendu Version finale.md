@@ -29,7 +29,7 @@
 ### 2.1 Collecte et préparation des données
 ### 2.2 Analyse exploratoire des données (EDA)
 ### 2.3 Modélisation
----   
+   
 ## Chapitre 3 : Résultats et discussion
 ### 3.1 Comparaison des performances des modèles
 ### 3.2 Analyse des métriques d’évaluation
