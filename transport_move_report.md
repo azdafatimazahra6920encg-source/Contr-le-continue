@@ -19,7 +19,7 @@ Voici un **sommaire clair, structuré et académique**, parfaitement aligné ave
 
  1. Contexte
  2. Problématique
-3. Objectifs
+ 3. Objectifs
 
 ---
 
@@ -41,8 +41,8 @@ Voici un **sommaire clair, structuré et académique**, parfaitement aligné ave
     – Création de la variable cible
 
 ### 2.2 Analyse exploratoire des données (EDA)
-    2.2.1 Feature engineering avancé
-    2.2.2 Analyse de corrélation
+    2.2.1.  Feature engineering avancé
+    2.2.2. Analyse de corrélation
 
 ### 2.3 Modélisation
     2.3.1 Choix des algorithmes
