@@ -31,22 +31,16 @@ Voici un **sommaire clair, structuré et académique**, parfaitement aligné ave
 
 ---
 
-**Chapitre 2 : Méthodologie**
+## Chapitre 2 : Méthodologie
 ### 2.1 Collecte et préparation des données
-
 ### 2.2 Analyse exploratoire des données (EDA)
-
 ### 2.3 Modélisation
    
-**Chapitre 3 : Résultats et discussion**
+## Chapitre 3 : Résultats et discussion
 ### 3.1 Comparaison des performances des modèles
-
 ### 3.2 Analyse des métriques d’évaluation
-
 ### 3.3 Analyse de l’importance des variables
-
 ### 3.4 Analyse de la matrice de corrélation
-
 ### 3.5 Analyse des distributions des variables et de la cible
 
 ---
