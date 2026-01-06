@@ -25,14 +25,14 @@ Voici un **sommaire clair, structuré et académique**, parfaitement aligné ave
 
 **Chapitre 1 : Présentation générale du projet**
 
-1. Thématique du transport et de la mobilité
+### 1. Thématique du transport et de la mobilité
 2. Description du dataset *Transport Move*
 3. Formulation du problème de classification
 
 ---
 
 **Chapitre 2 : Méthodologie**
-2.1 Collecte et préparation des données
+### 2.1 Collecte et préparation des données
   2.1.1 Description du dataset
   2.1.2 Pré-traitement des données
     – Gestion des doublons
@@ -40,11 +40,11 @@ Voici un **sommaire clair, structuré et académique**, parfaitement aligné ave
     – Encodage et standardisation
     – Création de la variable cible
 
-2.2 Analyse exploratoire des données (EDA)
+### 2.2 Analyse exploratoire des données (EDA)
     2.2.1 Feature engineering avancé
     2.2.2 Analyse de corrélation
 
-2.3 Modélisation
+### 2.3 Modélisation
     2.3.1 Choix des algorithmes
     2.3.2 Optimisation des hyperparamètres
     2.3.3 Validation croisée
@@ -52,24 +52,24 @@ Voici un **sommaire clair, structuré et académique**, parfaitement aligné ave
 ---
 
 **Chapitre 3 : Résultats et discussion**
-3.1 Comparaison des performances des modèles
-3.2 Analyse des métriques d’évaluation
+### 3.1 Comparaison des performances des modèles
+### 3.2 Analyse des métriques d’évaluation
     3.2.1 Rapport de classification
     3.2.2 Matrice de confusion
 
-3.3 Analyse de l’importance des variables
+### 3.3 Analyse de l’importance des variables
 3.4 Analyse de la matrice de corrélation
 3.5 Analyse des distributions des variables et de la cible
 
 ---
 
 **Chapitre 4 : Conclusion et perspectives**
-4.1 Synthèse des résultats
-4.2 Limites du modèle
+### 4.1 Synthèse des résultats
+### 4.2 Limites du modèle
     4.2.1 Limites méthodologiques
     4.2.2 Limites techniques
 
-4.3 Pistes d’amélioration
+### 4.3 Pistes d’amélioration
     4.3.1 Améliorations à court terme
     4.3.2 Améliorations à moyen terme
     4.3.3 Perspectives à long terme
@@ -77,9 +77,9 @@ Voici un **sommaire clair, structuré et académique**, parfaitement aligné ave
 ---
 
 **Chapitre 5 : Annexes**
-5.1 Environnement technique
-5.2 Reproductibilité
-5.3 Considérations éthiques
+### 5.1 Environnement technique
+### 5.2 Reproductibilité
+### 5.3 Considérations éthiques
 
 ---
 
@@ -513,15 +513,6 @@ Cette étude a démontré la **faisabilité de prédire un déménagement à par
 
 **Date de rédaction :** Janvier 2026
 **Auteur :** AZDA Fatima-zahra
-
----
-
-## Références
-
-1. Kaggle Dataset: willianoliveiragibin/transport-move
-2. Scikit-learn Documentation: https://scikit-learn.org/
-3. Chen, T., & Guestrin, C. (2016). XGBoost: A Scalable Tree Boosting System. KDD.
-4. Chawla, N. V. et al. (2002). SMOTE: Synthetic Minority Over-sampling Technique. JAIR.
 
 ---
 
