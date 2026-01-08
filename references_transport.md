@@ -160,12 +160,3 @@
 
 ---
 
-## Note méthodologique
-
-L'ensemble des analyses statistiques, visualisations et implémentations de modèles de machine learning présentées dans ce rapport ont été développées en Python 3.x avec l'assistance de **Claude AI (Anthropic)** pour l'optimisation du code, la validation méthodologique et la structuration documentaire. Les choix algorithmiques et l'interprétation des résultats restent sous la responsabilité de l'auteur.
-
----
-
-**Rapport :** Analyse Prédictive du Déménagement dans le Transport  
-**Auteur :** AZDA Fatima-zahra  
-**Date :** Janvier 2026
